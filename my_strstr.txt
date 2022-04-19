@@ -1,0 +1,43 @@
+char* my_strstr(const char*p1,const char*p2)
+{
+	assert(p1&&p2);
+	char* a = p1;
+	char* b = p2;
+	char* cur = p1;
+	if (*p2 == '\0')
+	{
+		return p1;
+	}
+	while (*cur)
+	{
+		a = cur;//记录重复位置
+		b = p2;
+		while ((*a!='\0')&&(*b!='\0')&&(*a == *b))//三个判断条件
+		{
+			a++;
+			b++;
+		}
+		if (*b == '\0')
+		{
+			return cur;
+		}
+		cur++;
+	}
+	return NULL;
+}
+
+int main()
+{
+	char* p1 = "abcdefabcd";
+	char* p2 = "defss";
+	char* ret = my_strstr(p1, p2);
+	if (ret == NULL)
+	{
+		printf("子串不存在\n");
+	}
+	else
+	{
+		printf("%s\n", ret);
+	}
+	return 0;
+}
