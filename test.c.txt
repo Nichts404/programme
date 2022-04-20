@@ -1,0 +1,76 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+
+#include"game.h"
+
+
+void game()
+{
+	char ret = 0;
+	char arr[ROW][COL] = {0};
+	Chess_board(arr,ROW,COL);
+	pBoard(arr, ROW, COL);
+	while (1)
+	{
+		pMove(arr, ROW, COL);
+		pBoard(arr, ROW, COL);
+		ret = isWin(arr, ROW, COL);
+		if (ret != 'C')
+		{
+			break;
+		}
+		cMove(arr, ROW, COL);
+		pBoard(arr, ROW, COL);
+		ret = isWin(arr, ROW, COL);
+		if (ret != 'C')
+		{
+			break;
+		}
+	}
+	if (ret == '*')
+	{
+		printf("玩家赢\n");
+	}
+	else if (ret == '#')
+	{
+		printf("电脑赢\n");
+	}
+	else
+	{
+		printf("平局\n");
+	}
+}
+
+
+void menu()
+{
+	printf("****************************************\n");
+	printf("****      1.paly        0.exit      ****\n");
+	printf("****YOU ARE AN REALLY FUCKING IDIOT!****\n");
+	printf("****************************************\n");
+}
+
+int main()
+{
+	int input = 0;
+	srand((unsigned int)time(NULL));
+	do
+	{
+		menu();
+		printf("请选择>:");
+		scanf("%d",&input);
+		switch (input)
+		{
+		case 1:
+			game();
+			break;
+		case 0:
+			printf("程序退出");
+			break;
+		default:
+			printf("选择错误，请重试。");
+			break;
+		}
+
+	} while (input);
+	return 0;
+}

@@ -1,0 +1,15 @@
+#define ROW 3
+#define COL 3
+
+
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+
+void Chess_board(char[ROW][COL], int, int);
+void pBoard(char[ROW][COL], int, int);
+void pMove(char[ROW][COL], int, int);
+void cMove(char[ROW][COL], int , int);
+char isWin(char[ROW][COL], int, int);
