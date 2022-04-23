@@ -1,0 +1,31 @@
+//逆序字符串
+int my_strlen(const char* p)
+{
+	assert(p != NULL);
+	int count = 0;
+	while (*p != '\0')
+	{
+		count++;
+		p++;
+	}
+	return count;
+}
+
+void reverse(char arr[])
+{
+	char tmp = arr[0];
+	int len = my_strlen(arr);
+	arr[0] = arr[len-1];
+	arr[len - 1] = '\0';
+	if (my_strlen(arr+1) >= 2)
+		reverse(arr + 1);
+	arr[len - 1] = tmp;
+}
+
+int main()
+{
+	char arr[] = "abcdef";
+	reverse(arr);
+	printf("%s\n", arr);
+	return 0;
+}
