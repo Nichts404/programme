@@ -1,5 +1,5 @@
 // my qsort function
-
+//排序方法
 int sort_nums(const void* e1, const void* e2)
 {
 	return *(int*)e1 - *(int*)e2;
@@ -14,7 +14,7 @@ int sort_nums(const void* e1, const void* e2)
 //{
 //	return ((Stu*)e1)-> age - ((Stu*)e2) -> age;
 //}
-
+// 排序部分实现
 void Swap(char* buf1,char*buf2,int width)
 {
 	int i = 0;
