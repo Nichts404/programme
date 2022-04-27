@@ -1,0 +1,29 @@
+void move(char p1,char p2)
+{
+	printf(" %c->%c ", p1, p2);
+}
+
+
+void hanoi(int b,char pos1,char pos2,char pos3)
+{
+	if (b == 1)
+	{
+		move(pos1,pos3);
+	}
+	else
+	{
+		hanoi(b - 1, pos1, pos3, pos2);
+		move(pos1, pos3);
+		hanoi(b - 1, pos2, pos1, pos3);
+	}
+}
+
+
+
+int main()
+{
+	int a = 0;
+	scanf("%d", &a);
+	hanoi(a,'a','b','c');
+	return 0;
+}
