@@ -1,0 +1,17 @@
+int main()
+{
+	char arr1[] = "Hello World!!";
+	char arr2[] = "#############";
+	int left = 0;
+	int right = strlen(arr2);
+	for (; left < right; left++, right--)
+	{
+		arr2[left] = arr1[left];
+		arr2[right] = arr1[right];
+		printf("%s\n",arr2);
+		Sleep(300);
+		system("cls");
+	}
+	printf("Hello World!!\n");
+	return 0;
+}
