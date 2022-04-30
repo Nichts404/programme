@@ -1,0 +1,67 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include"SeqList.h"
+
+//尾插测试
+void TestSeqList1()
+{
+	SL sl;
+	SeqListInit(&sl);//结构体需要传地址
+	SeqListPushBack(&sl, 1);
+	SeqListPushBack(&sl, 2);
+	SeqListPushBack(&sl, 3);
+	SeqListPushBack(&sl, 4);
+	SeqListPushBack(&sl, 5);
+	SeqListPrint(&sl);
+	SeqListDestroy(&sl);
+}
+//头插测试
+void TestSeqList2()
+{
+	SL sl;
+	SeqListInit(&sl);
+	SeqListPushBack(&sl, 1);
+	SeqListPushBack(&sl, 2);
+	SeqListPushBack(&sl, 3);
+	SeqListPushBack(&sl, 4);
+	SeqListPushBack(&sl, 5);
+	SeqListPushFront(&sl, 10);
+	SeqListPrint(&sl);
+	SeqListDestroy(&sl);
+}
+void TestSeqList3()
+{
+	SL sl;
+	SeqListInit(&sl);
+	SeqListPushBack(&sl, 1);
+	SeqListPushBack(&sl, 2);
+	SeqListPushBack(&sl, 3);
+	SeqListPushBack(&sl, 4);
+	SeqListPushBack(&sl, 5);
+	SeqListPrint(&sl);
+	SeqListInsert(&sl, 2, 3);
+	SeqListPrint(&sl);
+	SeqListDestroy(&sl);
+}
+void TestSeqList4()
+{
+	SL sl;
+	SeqListInit(&sl);
+	SeqListPushBack(&sl, 1);
+	SeqListPushBack(&sl, 2);
+	SeqListPushBack(&sl, 3);
+	SeqListPushBack(&sl, 4);
+	SeqListPushBack(&sl, 5);
+	SeqListPrint(&sl);
+	SeqListErase(&sl, 2);
+	SeqListPrint(&sl);
+	SeqListDestroy(&sl);
+}
+
+int main()
+{
+	//TestSeqList1();
+	//TestSeqList2();
+	//TestSeqList3();
+	TestSeqList4();
+	return 0;
+}

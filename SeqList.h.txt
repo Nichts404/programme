@@ -1,0 +1,27 @@
+#pragma once
+#include<stdio.h>
+#include<stdlib.h>
+#include<assert.h>
+
+#define N 1000
+typedef int SLDataType;
+
+//动态顺序表
+typedef struct SeqList
+{
+	SLDataType* a;
+	int size;//表示存了多少个数据
+	int capacity;//数组实际可存数据的容量
+}SL;
+
+void SeqListPrint(SL* ps);
+//接口函数
+void SeqListInit(SL* ps);
+void SeqListPushBack(SL* ps,SLDataType x);
+void SeqListPopBack(SL* ps);
+void SeqListPushFront(SL* ps, SLDataType x);
+void SeqListPopFront(SL* ps);
+int SeqListSearch(SL* ps);
+void SeqListInsert(SL* ps, int pos, SLDataType x);
+void SeqListErase(SL* ps, int pos);
+void SeqListDestroy(SL* ps);
