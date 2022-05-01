@@ -1,0 +1,110 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+
+#include"SingleList.h"
+
+void SListTest1()
+{
+	SLTNode *plist = NULL;
+	SListPushBack(&plist, 1);
+	SListPushBack(&plist, 2);
+	SListPushBack(&plist, 3);
+	SListPrint(plist);
+	SListPushFront(&plist, 1);
+	SListPushFront(&plist, 2);
+	SListPushFront(&plist, 3);
+	SListPushFront(&plist, 4);
+	SListPrint(plist);
+}
+void SListTest2()
+{
+	SLTNode *plist = NULL;
+	SListPushFront(&plist, 1);
+	SListPushFront(&plist, 2);
+	SListPushFront(&plist, 3);
+	SListPushFront(&plist, 4);
+	SListPrint(plist);
+}
+
+void SListTest3()
+{
+	SLTNode *plist = NULL;
+	SListPushBack(&plist, 1);
+	SListPushBack(&plist, 2);
+	SListPushBack(&plist, 3);
+	SListPrint(plist);
+	SlistPopBack(&plist);
+	SlistPopBack(&plist);
+	SlistPopBack(&plist);
+	SListPrint(plist);
+}
+//查找数据
+void SListTest4()
+{
+	SLTNode *plist = NULL;
+	SListPushBack(&plist, 1);
+	SListPushBack(&plist, 2);
+	SListPushBack(&plist, 3);
+	SListPushBack(&plist, 3);
+	SListPushBack(&plist, 4);
+	SListPushBack(&plist, 5);
+	SListPushBack(&plist, 3);
+	SListPushBack(&plist, 6);
+	SListPrint(plist);
+	int i = 1;
+	SLTNode* pos = SlistSearch(plist, 3);
+	while (pos)
+	{
+		printf("第%d个，节点为%p->%d\n", i++, pos, pos->data);
+		pos = SlistSearch(pos->next, 3);
+	}
+}
+//修改数据
+void SListTest5()
+{
+	SLTNode *plist = NULL;
+	SListPushBack(&plist, 1);
+	SListPushBack(&plist, 2);
+	SListPushBack(&plist, 3);
+	SListPushBack(&plist, 4);
+	SListPushBack(&plist, 5);
+	SListPushBack(&plist, 6);
+	SListPushBack(&plist, 7);
+	SListPushBack(&plist, 8);
+	SListPrint(plist);
+	SLTNode* pos = SlistSearch(plist, 3);
+	if (pos != NULL)
+	{
+		pos->data = 30;
+	}
+	SListPrint(plist);
+}
+void SListTest6()
+{
+	SLTNode *plist = NULL;
+	SListPushBack(&plist, 1);
+	SListPushBack(&plist, 2);
+	SListPushBack(&plist, 3);
+	SListPushBack(&plist, 4);
+	SListPushBack(&plist, 5);
+	SListPushBack(&plist, 6);
+	SListPushBack(&plist, 7);
+	SListPushBack(&plist, 8);
+	SListPrint(plist);
+	SLTNode* pos = SlistSearch(plist, 1);
+	if (pos)
+	{
+		SlistPopInsert(&plist, pos, 30);
+	}
+	SListPrint(plist);
+}
+int main()
+{
+	//SListTest1();
+	//SListTest2();
+	//SListTest3();
+	//SListTest4();
+	//SListTest5();
+	SListTest6();
+	//SListTest7();
+	return 0;
+}
