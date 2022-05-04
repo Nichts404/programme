@@ -1,0 +1,31 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include"List.h"
+
+void ListTest1()
+{
+	LTNode* plist  = ListInit();
+	ListPushBack(plist, 1);
+	ListPushBack(plist, 2);
+	ListPushBack(plist, 3);
+	ListPushBack(plist, 4);
+	ListPushBack(plist, 5);
+	ListPophBack(plist);
+	ListPrint(plist);
+}
+void ListTest2()
+{
+	LTNode* plist = ListInit();
+	ListPushBack(plist, 1);
+	ListPushBack(plist, 2);
+	ListPushBack(plist, 3);
+	ListPushBack(plist, 4);
+	ListPushBack(plist, 5);
+	ListPushFront(plist, 6);
+	ListPrint(plist);
+}
+int main()
+{
+	//ListTest1();
+	ListTest2();
+	return 0;
+}
