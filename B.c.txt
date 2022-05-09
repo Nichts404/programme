@@ -1,0 +1,15 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+
+#include<stdio.h>
+
+int main()
+{
+	char line[1000] = { 0 };
+	FILE* pf = fopen("text.txt", "rb");
+	//FILE* pf = fopen("text.txt", "wb");
+	//putc(5, pf);fgets(line,1000,pf);
+	printf("%s\n", fgets(line, 1000, pf));
+	fclose (pf);
+	pf = NULL;
+	return 0;
+}
