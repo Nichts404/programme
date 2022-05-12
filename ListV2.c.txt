@@ -1,0 +1,122 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include"List.h"
+
+//初始化链表,创建哨兵位
+LTNode* ListInit()
+{
+	LTNode* phead = (LTNode*)malloc(sizeof(LTNode));
+	phead->prev = phead;
+	phead->next = phead;
+	
+	return phead;
+}
+//创建新节点
+LTNode* BuyListNode(LTDataType x)
+{
+	LTNode* newnode = (LTNode*)malloc(sizeof(LTNode));
+	newnode->data = x;
+	newnode->prev = NULL;
+	newnode->next = NULL;
+	return newnode;
+}
+//遍历链表
+void ListPrint(LTNode* phead)
+{
+	assert(phead);
+	LTNode*cur = phead->next;
+	while (cur != phead)
+	{
+		printf("%d ", cur->data);
+		cur = cur->next;
+	}
+	printf("\n");
+}
+
+//循环双向链表尾插
+void ListPushBack(LTNode* phead,LTDataType x)
+{
+	assert(phead);
+	//LTNode* tail = phead->prev;
+	//LTNode* newnode = BuyListNode(x);
+	//tail->next = newnode;
+	//newnode->prev = tail;
+	//newnode->next = phead;
+	//phead->prev = newnode;
+	ListInsert(phead, x);
+}
+//循环双向链表尾删
+void ListPophBack(LTNode* phead)
+{
+	assert(phead);
+	assert(phead->next != phead);
+	/*LTNode* tail = phead->prev;
+	LTNode* tailPrev = phead->prev->prev;
+	free(tail);
+	tail->next = phead;
+	phead->prev = tailPrev;*/
+	ListErase(phead->prev);
+}
+//循环双向链表头插
+void ListPushFront(LTNode* phead, LTDataType x)
+{
+	assert(phead);
+	//LTNode* newnode = BuyListNode(x);
+	//LTNode* next = phead->next;
+
+	//phead->next = newnode;
+	//newnode->prev = phead;
+
+	//newnode->next = next;
+	//next->prev = newnode;
+	ListInsert(phead->next, x);
+}
+//循环双向链表头删
+void ListPopFront(LTNode* phead)
+{
+	assert(phead);
+	//链表为空不头删
+	assert(phead->next != phead);
+	/*LTNode* next = phead->next;
+	LTNode* nextNext = next->next;
+	
+	phead->next = nextNext;
+	nextNext->prev = phead;
+	free(next);*/
+	ListErase(phead->next);
+}
+//查找链表节点
+LTNode* ListFind(LTNode* phead,LTDataType x)
+{
+	assert(phead);
+	LTNode* cur = phead->next;
+	while (cur!= phead)
+	{ 
+		if (cur->data == x)
+		{
+			return cur;
+		}
+		cur = cur->next;
+	}
+	return NULL;
+}
+//指定pos位置之前插入
+void ListInsert(LTNode*pos, LTDataType x)
+{
+	assert(pos);
+	LTNode* newnode = BuyListNode(x);
+	LTNode* posPrev = pos->prev;
+	posPrev->next = newnode;
+	newnode->prev = posPrev;
+	newnode->next = pos;
+	pos->prev = newnode;
+}
+//指定pos删除
+void ListErase(LTNode*pos)
+{
+	assert(pos);
+	LTNode* posPrev = pos->prev;
+	LTNode* posNext = pos->next;
+	free(pos);
+	posPrev->next = posNext;
+	posNext->prev = posPrev;
+}
