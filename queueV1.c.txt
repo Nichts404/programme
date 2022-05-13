@@ -1,0 +1,42 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include"Queue.h"
+
+void QueueInit(Queue* pq)
+{
+	assert(pq);
+	pq->head = NULL;
+	pq->tail = NULL;
+}
+void QueueDestroy(Queue* pq)
+{
+	assert(pq);
+	QNode* cur = pq->head;
+	while (cur != NULL)
+	{
+		QNode* next = cur->next;
+		free(cur);
+		cur = next;
+	}
+	pq->head = pq->tail = NULL;
+}
+void QueuePush(Queue* pq, QDataType x)
+{
+	assert(pq);
+	QNode* newnode = (QNode*)malloc(sizeof(QNode));
+	newnode->data = x;
+	newnode->next = NULL;
+	if (pq->head == NULL)
+	{
+		pq->head = pq->tail = newnode;
+	}
+	else
+	{
+		pq->tail->next = newnode;
+		pq->tail = newnode;
+	}
+}
+void QueuePop(Queue* pq);
+QDataType QueueFront(Queue* pq);
+QDataType QueueBack(Queue* pq);
+int QueueSize(Queue* pq);
+bool QueueEmpty(Queue* pq);
