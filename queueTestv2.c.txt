@@ -1,0 +1,29 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include"Queue.h"
+
+void QueueTest1()
+{
+	Queue q;
+	QueueInit(&q);
+	QueuePush(&q, 1);
+	QueuePush(&q, 2);
+	QueuePush(&q, 3);
+	QueuePush(&q, 4);
+	QueuePush(&q, 5);
+	QueuePop(&q);
+	QueuePop(&q);
+	QueuePush(&q, 6);
+	QueuePush(&q, 7);
+	while (!QueueEmpty(&q))
+	{
+		QDataType front = QueueFront(&q);
+		printf("%d ",front);
+		QueuePop(&q);
+	}
+	printf("\n");
+}
+int main()
+{
+	QueueTest1();
+	return 0;
+}
