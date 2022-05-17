@@ -1,0 +1,80 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include"Tree.h"
+
+void PrevOrder(BTNode* root)
+{
+	if (root == NULL)
+	{
+		printf("NULL ");
+		return;
+	}
+	printf("%c ",root->data);
+	PrevOrder(root->left);
+	PrevOrder(root->right);
+}
+
+void InOrder(BTNode* root)
+{
+	if (root == NULL)
+	{
+		printf("NULL ");
+		return;
+	}
+	InOrder(root->left);
+	printf("%c ", root->data);
+	InOrder(root->right);
+}
+void PostOrder(BTNode* root)
+{
+	if (root == NULL)
+	{
+		printf("NULL ");
+		return;
+	}
+	PostOrder(root->left);
+	PostOrder(root->right);
+	printf("%c ", root->data);
+}
+//统计节点个数如果根为空就不是一个节点就返回，否则统计左子树和右子树的节点+1。
+int TreeSize(BTNode* root)
+{
+	return root == NULL ? 0:TreeSize(root->left)+TreeSize(root->right)+1;
+}
+//统计叶子个数，如果根为空就返回0，如果左子树和右子树都为空，就说明是一个叶子，返回1，否则继续调用统计左子树和右子树的叶子之和。
+int TreeLeafSize(BTNode* root)
+{
+	if (root == NULL)
+	{
+		return 0;
+	}
+	if (root->left == NULL && root->right == NULL)
+	{
+		return 1;
+	}
+	return TreeLeafSize(root->left) +
+		TreeLeafSize(root->right);
+}
+
+void LevelOrder(BTNode* root)
+{
+	QNode q;
+	QueueInit(&q);
+	if (root)
+	QueuePush(&q, root);
+	while (!QueueEmpty(&q))
+	{
+		QDataType front = QueueFront(&q);
+		QueuePop(&q);
+		printf("%c ", front->data);
+		if (front->left != NULL)
+		{
+			QueuePush(&q, front->left);
+		}
+		if (front->right != NULL)
+		{
+			QueuePush(&q, front->right);
+		}
+	}
+	printf("\n");
+	QueueDestroy(&q);
+}

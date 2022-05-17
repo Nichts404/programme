@@ -1,0 +1,31 @@
+#pragma once
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<assert.h>
+#include<stdbool.h>
+
+struct BinartTreeNode;
+
+typedef struct BinaryTreeNode* QDataType;
+
+typedef struct QueueNode
+{
+	struct Queue* next;
+	QDataType* data;
+}QNode;
+
+typedef struct Queue
+{
+	struct QueueNode* head;
+	struct QueueNode* tail;
+}Queue;
+
+void QueueInit(Queue* pq);
+void QueueDestroy(Queue* pq);
+void QueuePush(Queue* pq, QDataType x);
+void QueuePop(Queue* pq);
+QDataType QueueFront(Queue* pq);
+QDataType QueueBack(Queue* pq);
+int QueueSize(Queue* pq);
+bool QueueEmpty(Queue* pq);
