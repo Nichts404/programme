@@ -1,0 +1,52 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+
+void PrintArr(int*a,int n)
+{
+	int i = 0;
+	for (i = 0; i < n; i++)
+	{
+		printf("%d ", a[i]);
+	}
+	printf("\n");
+}
+void ShellSort(int* a,int n)
+{
+	int gap = n;
+	while (gap > 1)
+	{
+		gap /= 2;
+
+		for (int i = 0; i < n - gap; i++)
+		{
+			int end = i;
+			int tmp = a[end + gap];
+			while (end >= 0)
+			{
+				if (tmp<a[end])
+				{
+					a[end + gap] = a[end];
+					end-=gap;
+				}
+				else
+				{
+					break;
+				}
+			}
+			a[end + gap] = tmp;
+		}
+	}
+}
+void ShellSortTest()
+{
+	int a[] = { 3, 7, 8, 6, 5, 1, 2, 9, 0, 4 };
+	int size = sizeof a / sizeof(int);
+	ShellSort(a, size);
+	PrintArr(a,size);
+}
+
+int main()
+{
+	ShellSortTest();
+	return 0;
+}
