@@ -1,0 +1,74 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+
+void PrintArr(int*a,int n)
+{
+	int i = 0;
+	for (i = 0; i < n; i++)
+	{
+		printf("%d ", a[i]);
+	}
+	printf("\n");
+}
+void Swap(int* pa1, int* pa2)
+{
+	int tmp = *pa1;
+	*pa1 = *pa2;
+	*pa2 = tmp;
+}
+//向下调整
+void AdjustDown(int* a,int n,int root)
+{
+	
+	int parent = root;
+	int child = parent*2 +1;
+	while (child<n)
+	{
+		//选出左右孩子小的，控制大堆/小堆
+		if (child + 1<n && a[child + 1] > a[child])
+		{
+			child += 1;
+		}
+		//交换父子
+		if (a[parent] < a[child])
+		{
+			Swap(&a[parent], &a[child]);
+			parent = child;
+			child = parent*2+1;
+		}
+		else
+		{
+			break;
+		}
+	}
+}
+void HeapSort(int* a ,int n)
+{
+	//建堆，从下往前调，(下标-1)/2就是最后一个节点的父亲
+	for (int i = (n - 1 - 1) / 2; i >= 0; --i)
+	{
+		AdjustDown(a, n, i);
+	}
+	//排升序，建大堆
+	int end = n - 1;
+	while (end > 0)
+	{
+		Swap(&a[0], &a[end]);
+		AdjustDown(a, end, 0);
+		--end;
+	}
+}
+void HeapSortTest()
+{
+	int a[] = { 3, 7, 8, 6, 5, 1, 2, 9, 0, 4 };
+	int size = sizeof a / sizeof(int);
+	HeapSort(a, size);
+	PrintArr(a, size);
+}
+
+
+int main()
+{
+	HeapSortTest();
+	return 0;
+}
