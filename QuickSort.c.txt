@@ -1,0 +1,73 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+
+void PrintArr(int*a,int n)
+{
+	int i = 0;
+	for (i = 0; i < n; i++)
+	{
+		printf("%d ", a[i]);
+	}
+	printf("\n");
+}
+void Swap(int* pa1, int* pa2)
+{
+	int tmp = *pa1;
+	*pa1 = *pa2;
+	*pa2 = tmp;
+}
+void QuickSort(int* a, int left,int right)
+{
+	//当区间只为0或者只有1个时返回
+	if (left >= right)
+	{
+		return;
+	}
+	int begin = left, end = right;
+	//int begin = 0, end = n-1;
+	int key = a[begin];
+	int pivot = begin;
+	while (begin<end)
+	{
+		//右边找小，放到左边
+		while (begin<end&&a[end] > key)
+		{
+			end--;
+		}
+		//小的放到左边的坑里，自己形成新的坑位
+		a[pivot] = a[end];
+		pivot = end;
+		//左边找大，放到右边
+		while (begin<end&&a[begin] < key)
+		{
+			begin++;
+		}
+		//大的放到右边的坑里，自己形成新的坑位
+		a[pivot] = a[begin];
+		pivot = begin;
+	}
+	//把key放到正确的位置
+	if (begin == end)
+	{
+		pivot = begin;
+		a[pivot] = key;
+	}
+	//左区间[left,pivot-1],
+	//右区间[pivot+1,right]
+	QuickSort(a, left, pivot - 1);
+	QuickSort(a, pivot + 1, right);
+}
+
+void QuickSortTest()
+{
+	int a[] = { 3, 7, 8, 6, 5, 1, 2, 9, 0, 4 };
+	int size = sizeof a / sizeof(int);
+	QuickSort(a,0,size-1);
+	PrintArr(a, size);
+}
+
+int main()
+{
+	QuickSortTest();
+	return 0;
+}
