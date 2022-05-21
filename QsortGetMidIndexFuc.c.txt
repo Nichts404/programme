@@ -1,0 +1,35 @@
+void GetMidIndex(int*a,int left,int right)
+{
+	//三数取中优化
+	int mid = (left + right) >> 1;
+	if (a[mid] > a[left])
+	{
+		if (a[left] > a[right])
+		{
+			return left;
+		}
+		else if(a[mid]<a[right])
+		{
+			return mid;
+		}
+		else
+		{
+			return right;
+		}
+	}
+	else //a[left]>a[mid]
+	{
+		if (a[left] < a[right])
+		{
+			return  left;
+		}
+		else if (a[mid] > a[right])
+		{
+			return mid;
+		}
+		else
+		{
+			return right;
+		}
+	}
+}
