@@ -1,0 +1,20 @@
+int PartSort3(int*a, int left, int right)
+{
+	int index = GetMidIndex(a, left, right);
+	Swap(&a[left], &a[index]);
+
+	int keyi = left;
+	int prev = left, cur = left + 1;
+	while (cur < right)
+	{
+		if (a[cur] < a[keyi] && 
+			prev++!=cur)
+		{
+			Swap(&a[prev], &a[cur]);
+		}
+
+		cur++;
+	}
+	Swap(&a[keyi], &a[prev]);
+	return prev;
+}
