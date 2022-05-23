@@ -1,0 +1,73 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<stdlib.h>
+void PrintArr(int*a,int n)
+{
+	int i = 0;
+	for (i = 0; i < n; i++)
+	{
+		printf("%d ", a[i]);
+	}
+	printf("\n");
+}
+//归并排序
+void _MergeSort(int* a, int left, int right,int* tmp)
+{
+	if (left >= right)
+	{
+		return;
+	}
+	int mid = (left + right) >> 1;
+	//递归分割左右区间直到有序
+	_MergeSort(a,left,mid,tmp);
+	_MergeSort(a,mid+1,right,tmp);
+	//归并
+	int begin1 = left, end1 = mid;
+	int begin2 = mid + 1, end2 = right;
+	int index = left;
+	while (begin1<=end1&&begin2<=end2)
+	{
+		if(a[begin1] < a[begin2])
+		{
+			tmp[index++] = a[begin1++];
+		}
+		else
+		{
+			tmp[index++] = a[begin2++];
+		}
+	}
+	while (begin1 <= end1)
+	{
+		tmp[index++] = a[begin1++];
+	}
+	while (begin2 <= end2)
+	{
+		tmp[index++] = a[begin2++];
+	}
+	//拷贝回去
+	for (int i = left;i<=right;i++)
+	{
+		a[i] = tmp[i];
+	}
+}
+void MergeSort(int* a ,int n)
+{
+	int* tmp = (int*)malloc(sizeof(int)*n);
+	_MergeSort(a,0,n-1,tmp);
+	free(tmp);
+}
+MergeSortTest()
+{
+	int a[] = { 3, 7, 8, 6, 5, 1, 2, 9, 0, 4 };
+	int size = sizeof a / sizeof(int);
+	MergeSort(a,size);
+	PrintArr(a, size);
+}
+int main()
+{
+	//ShellSortTest();
+	//HeapSortTest();
+	//QuickSortTest();
+	MergeSortTest();
+	return 0;
+}
