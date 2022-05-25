@@ -21,7 +21,7 @@ void SeqListCheckCapacity(SL*ps)
 	if (ps->size == ps->capacity)
 	{
 		int newcapacity = ps->capacity == 0 ? 4 : ps->capacity * 2;
-		SLDataType* tmp = (SLDataType)realloc(ps->a, newcapacity*sizeof(SLDataType));
+		SLDataType* tmp = (SLDataType*)realloc(ps->a, newcapacity*sizeof(SLDataType));
 		//扩容失败
 		if (tmp == NULL)
 		{
