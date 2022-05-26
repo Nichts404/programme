@@ -12,9 +12,23 @@ void Initcontact(struct Contact* ps)
 void Addcontact(struct Contact* ps)
 {
 	//判断通讯录是否已满
-	if (ps->size == MAX)
+	//if (ps->size == MAX)
+	//{
+	//	printf("通讯录已满\n");
+	//}
+	if(ps->capacity == ps->size)
 	{
-		printf("通讯录已满\n");
+		int newcapacity = ps->capacity==0?4:ps->capacity*2;
+		Peoinfo* tmp = (Peoinfo*)realloc(ps->data,sizeof(Peoinfo)*newcapacity);
+		if(tmp==NULL)
+		{
+			exit(-1);
+		}
+		else
+		{
+			ps->capacity = newcapacity;
+			ps->data = tmp;
+		}
 	}
 	else
 	{

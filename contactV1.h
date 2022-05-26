@@ -7,7 +7,7 @@
 #define MAX_SEX 5
 #define MAX_TELE 12
 #define MAX_ADDR 30
-#define MAX 1000
+//#define MAX 1000
 
 
 typedef struct People
@@ -21,7 +21,8 @@ typedef struct People
 
 typedef struct Contact
 {
-	Peoinfo data[MAX];
+	Peoinfo* data;
+	int capacity;
 	int size;
 }Contact;
 
