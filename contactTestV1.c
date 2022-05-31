@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 
 #include"contact.h"
+
 enum FUN
 {
 	EXIT,
@@ -9,7 +10,8 @@ enum FUN
 	SEARCH,
 	MODIFY,
 	SHOW,
-	SORT
+	SORT,
+	SAVE
 };
 
 void menu()
@@ -18,7 +20,7 @@ void menu()
 	printf("*******1.add            2.del   *****\n");
 	printf("*******3.search         4.modify*****\n");
 	printf("*******5.show           6.sort  *****\n");
-	printf("*******0.exit                   *****\n");
+	printf("*******7.save           0.exit  *****\n");
 	printf("*************************************\n");
 }
 
@@ -28,7 +30,7 @@ int main()
 	//创建通讯录
 	struct Contact con;
 	//初始化通讯录
-	Initcontact(&con);
+	InitContact(&con);
 	do
 	{
 		menu();
@@ -37,21 +39,24 @@ int main()
 		switch (input)
 		{
 		case ADD:
-			Addcontact(&con);
+			AddContact(&con);
 			break;
 		case DEL:
-			Delcontact(&con);
+			DelContact(&con);
 			break;
 		case SEARCH:
-			Searchcontact(&con);
+			SearchContact(&con);
 			break;
 		case MODIFY:
 			break;
 		case SHOW:
-			Showcontact(&con);
+			ShowContact(&con);
 			break;
 		case SORT:
-			Sortcontact(&con);
+			SortContact(&con);
+			break;
+		case SAVE:
+			SaveContact(&con);
 			break;
 		case EXIT:
 			printf("退出通讯录\n");
