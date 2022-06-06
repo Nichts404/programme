@@ -164,6 +164,7 @@ void SearchContact(Contact* ps)
 	}
 }
 //根据名字排序
+<<<<<<< HEAD
 //int SortByName(const void* e1, const void*e2)
 //{
 //	//strcmp比较字符串
@@ -186,6 +187,19 @@ void SortContact(Contact* ps)
 	printf("排序成功\n");
 }
 void DestoryContact(Contact* ps)
+=======
+int SortByName(const void* e1, const void*e2)
+{
+	//strcmp比较字符串
+	return(strcmp(((Contact*)e1)->data->name, ((Contact*)e2)->data->name));
+}
+void SortContact(struct Contact* ps)
+{
+	qsort(ps->data, ps->size, sizeof(ps->data[0]), SortByName);
+	printf("排序成功\n");
+}
+void DestoryContact(struct Contact* ps)
+>>>>>>> 08ea1d696e50aa9ab5edef00a3f602103382d646
 {
 	free(ps->data);
 	ps->data = NULL;
