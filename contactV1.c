@@ -164,17 +164,28 @@ void SearchContact(Contact* ps)
 	}
 }
 //根据名字排序
-int SortByName(const void* e1, const void*e2)
+//int SortByName(const void* e1, const void*e2)
+//{
+//	//strcmp比较字符串
+//	return(strcmp(((Contact*)e1)->data->name, ((Contact*)e2)->data->name));
+//}
+void SortContact(Contact* ps)
 {
-	//strcmp比较字符串
-	return(strcmp(((Contact*)e1)->data->name, ((Contact*)e2)->data->name));
-}
-void SortContact(struct Contact* ps)
-{
-	qsort(ps->data, ps->size, sizeof(ps->data[0]), SortByName);
+	for (int i = 0; i < ps->size - 1; i++)
+	{
+		for (int j = 0; j < ps->size - i - 1; j++)
+		{
+			if (strcmp(ps->Data[j].name, ps->Data[j + 1].name) > 0)
+			{
+				PeoInfo tmp = ps->Data[j];
+				ps->Data[j] = ps->Data[j + 1];
+				ps->Data[j + 1] = tmp;
+			}
+		}
+	}
 	printf("排序成功\n");
 }
-void DestoryContact(struct Contact* ps)
+void DestoryContact(Contact* ps)
 {
 	free(ps->data);
 	ps->data = NULL;
